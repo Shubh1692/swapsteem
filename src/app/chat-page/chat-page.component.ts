@@ -8,7 +8,7 @@ import {ChatService} from '../../service/chat.service';
 })
 export class ChatPageComponent implements OnInit {
 
-
+  newMessage = '';
 
   constructor( private _chatService: ChatService,
                 private _messages ) { 
@@ -20,7 +20,7 @@ export class ChatPageComponent implements OnInit {
     }); 
   }
 
-  sendMessage(msg){
-    this._chatService.sendMessage(msg);
+  sendMessage(){
+    this._chatService.sendMessage(this.newMessage);
   }
 }
