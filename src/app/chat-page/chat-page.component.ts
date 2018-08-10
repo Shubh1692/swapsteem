@@ -14,7 +14,7 @@ export class ChatPageComponent implements OnInit {
                 private _messages ) { 
   }
 
-  ngOnInit() {
+  ngOnInit() { 
     this._chatService.reciveMessage().subscribe(data => {
       this._messages.push(data);
     }); 
