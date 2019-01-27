@@ -8,6 +8,19 @@ import { CookieModule } from 'ngx-cookie';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {
+  MatDialogModule,
+  MatInputModule,
+  MatButtonModule,
+  MatFormFieldModule,
+  MatProgressSpinnerModule,
+  MatTableModule,
+  MatPaginatorModule,
+  MatMenuModule,
+  MatChipsModule,
+  MatSelectModule,
+  MatProgressBarModule
+} from '@angular/material';
 import { AppNavComponent } from './app-nav/app-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { HomeComponent } from './home/home.component';
@@ -36,8 +49,12 @@ import { MomentModule } from 'angular2-moment';
 import { NgxAutoScrollModule } from 'ngx-auto-scroll';
 import { TradePipePipe } from '../pipes/trade-pipe.pipe';
 import { OrderComponent } from './order/order.component';
-import { NgxUiLoaderModule } from  'ngx-ui-loader';
+import { NgxUiLoaderModule } from 'ngx-ui-loader';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ReviewComponent } from './components/review/review.component';
+import { BarRatingModule } from "ngx-bar-rating";
+import { CountdownModule } from 'ngx-countdown';
+import { AuthGuard } from '../guards/auth-guard.service';
 const config: SocketIoConfig = { url: 'http://swapsteem-api.herokuapp.com', options: {} };
 
 @NgModule({
@@ -65,8 +82,10 @@ const config: SocketIoConfig = { url: 'http://swapsteem-api.herokuapp.com', opti
     SellSteemComponent,
     ChatPageComponent,
     TradePipePipe,
-    OrderComponent
+    OrderComponent,
+    ReviewComponent
   ],
+  entryComponents: [ReviewComponent],
   imports: [
     NgxAutoScrollModule,
     MomentModule,
@@ -80,9 +99,22 @@ const config: SocketIoConfig = { url: 'http://swapsteem-api.herokuapp.com', opti
     CookieModule.forRoot(),
     FormsModule,
     NgxUiLoaderModule,
-    SocketIoModule.forRoot(config)
+    SocketIoModule.forRoot(config),
+    MatInputModule,
+    MatDialogModule,
+    MatButtonModule,
+    BarRatingModule,
+    MatFormFieldModule,
+    MatProgressSpinnerModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatMenuModule,
+    MatChipsModule,
+    MatSelectModule,
+    CountdownModule,
+    MatProgressBarModule
   ],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
